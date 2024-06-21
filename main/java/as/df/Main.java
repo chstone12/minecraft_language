@@ -188,6 +188,7 @@ public class Main {
                         else if(code_index[4].equals("/=")) set_int(var_name, code_line, code_index, 4, Math.round(t1 / t2));
                         else if(code_index[4].equals("%=")) set_int(var_name, code_line, code_index, 4, (t1 % t2));
                         else if(code_index[4].equals("^=")) set_int(var_name, code_line, code_index, 4, (int) Math.pow(t1, t2));
+                        else if(code_index[4].equals("=")) set_int(var_name, code_line, code_index, 4, t2);
                         else {
                             System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[4] + "의 기호가 잘못됐습니다.");
                             break;
