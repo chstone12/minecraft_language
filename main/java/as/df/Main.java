@@ -23,7 +23,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        String code = Files.readString(Paths.get("C:\\Users\\사용자\\Desktop\\mc언어\\code.txt")); //   C:\Users\사용자\Desktop\mc언어\code.txt
+        String code = Files.readString(Paths.get(args[0])); //   C:\Users\사용자\Desktop\mc언어\code.txt
         String[] codes = code.split("\\R");
 
         for(int q = 0; q < codes.length; q++) {
