@@ -178,6 +178,17 @@ public class Main {
                         String var_name = code_index[3];
                         String var_name_2 = code_index[5];
 
+                        if(!Arrays.toString(int_name).contains(var_name)) {
+                            System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[3] + "은(는) 존재하지 않는 변수입니다.");
+                            break;
+                        }
+
+                        if(!Arrays.toString(int_name).contains(var_name_2)) {
+                            System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[5] + "은(는) 존재하지 않는 변수입니다.");
+                            break;
+                        }
+
+
                         int t1 = get_int(var_name, code_line, code_index, 3);
                         int t2 = get_int(var_name_2, code_line, code_index, 5);
 
@@ -194,6 +205,9 @@ public class Main {
                             break;
                         }
 
+                    } else {
+                        System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[2] + " <-- [여기]");
+                        break;
                     }
 
                 } else {
@@ -207,6 +221,16 @@ public class Main {
                     if(code_index[2].equals("score")) {
                         String var_name = code_index[3];
                         String var_name_2 = code_index[5];
+
+                        if(!Arrays.toString(int_name).contains(var_name)) {
+                            System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[3] + "은(는) 존재하지 않는 변수입니다.");
+                            break;
+                        }
+
+                        if(!Arrays.toString(int_name).contains(var_name_2)) {
+                            System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[5] + "은(는) 존재하지 않는 변수입니다.");
+                            break;
+                        }
 
                         int t1 = get_int(var_name, code_line, code_index, 3);
                         int t2 = get_int(var_name_2, code_line, code_index, 5);
@@ -222,6 +246,7 @@ public class Main {
                                                 q -= 2;
                                             } catch (NumberFormatException e) {
                                                 System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
+                                                break;
                                             }
 
                                         } else {
@@ -247,6 +272,7 @@ public class Main {
                                                 q -= 2;
                                             } catch (NumberFormatException e) {
                                                 System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
+                                                break;
                                             }
 
                                         } else {
@@ -272,6 +298,7 @@ public class Main {
                                                 q -= 2;
                                             } catch (NumberFormatException e) {
                                                 System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
+                                                break;
                                             }
 
                                         } else {
@@ -287,9 +314,18 @@ public class Main {
                                     break;
                                 }
                             }
+                        } else {
+                            System.out.println(line_count + "번째 줄의 " + code_index[4] + "은(는) 잘못된 (부)등호입니다.");
+                            break;
                         }
 
+                    } else {
+                        System.out.println(line_count + "번째 줄의 " + code_index[2] + "은(는) 잘못된 구문입니다.");
+                        break;
                     }
+                } else {
+                    System.out.println(line_count + "번째 줄의 " + code_index[1] + "은(는) 잘못된 구문입니다.");
+                    break;
                 }
             } else if(code_index[0].equals("setblock")) {
                 if(code_index[2].equals("redstone_block")) {
@@ -298,6 +334,7 @@ public class Main {
                         q -= 2;
                     } catch (NumberFormatException e) {
                         System.out.println(line_count + "번째 줄의 " + code_index[1] + "은(는) 잘못된 정수입니다.");
+                        break;
                     }
                 } else {
                     System.out.println(line_count + "번째 줄의 " + code_index[2] + "은(는) 존재하지 않는 블럭입니다.");
@@ -325,11 +362,16 @@ public class Main {
                     }
 
                     else if(ar[w].startsWith("#") || ar[w].startsWith(" #")) {
-                        String var_name = ar[w].replace(" ", "").replace("#", "");
-                        int unicode = get_int(var_name, code_line, code_index, w);
-                        int hex = Integer.parseInt(String.valueOf(unicode), 16);
-                        char cha = (char) hex;
-                        System.out.print(cha);
+                        try {
+                            String var_name = ar[w].replace(" ", "").replace("#", "");
+                            int unicode = get_int(var_name, code_line, code_index, w);
+                            int hex = Integer.parseInt(String.valueOf(unicode), 16);
+                            char cha = (char) hex;
+                            System.out.print(cha);
+                        } catch (Exception e) {
+                            System.out.println(++q + "번째 줄의 " + ar[w] + "에서, #은 정수인 변수에만 붙일 수 있습니다.");
+                            break;
+                        }
                     }
 
                     else {
