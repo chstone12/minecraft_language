@@ -48,4 +48,9 @@ tellraw "Hello, world!"<br>
 tellraw "당신이 입력한 숫자는 " + num + "입니다."<br>
 say 숫자를 입력하세요.<br>
 (say의 경우는 변수 출력 못 함. num이라는 변수가 있어도, say num은 그냥 num을 출력함.)<br>
+정수인 변수 앞에 #을 붙이면 그 숫자를 유니코드로 변환해 줍니다.<br>
+scoreboard objectives add num int<br>
+scoreboard players set num 61<br>
+tellraw #num<br>
+출력 결과: a<br>
 <br><br><br>
