@@ -1,0 +1,20 @@
+say 숫자 두개 입력하셈
+
+scoreboard objectives add n1 input
+scoreboard objectives add n2 input
+scoreboard objectives add n3 string
+
+execute if score n1 > n2 run setblock 13 redstone_block
+execute if score n1 < n2 run setblock 15 redstone_block
+execute if score n1 == n2 run setblock 17 redstone_block
+
+
+
+scoreboard players set n3 1이 2보다 큼
+setblock 20 redstone_block
+scoreboard players set n3 2가 1보다 큼
+setblock 20 redstone_block
+scoreboard players set n3 똑같음
+setblock 20 redstone_block
+
+tellraw "n1의 값: " + n1 + " / n2의 값: " + n2 + " / " + n3
