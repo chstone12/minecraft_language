@@ -2,10 +2,7 @@ package as.df;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
@@ -178,12 +175,12 @@ public class Main {
                         String var_name = code_index[3];
                         String var_name_2 = code_index[5];
 
-                        if(!Arrays.toString(int_name).contains(var_name)) {
+                        if(!Arrays.toString(int_name).contains("쉙" + var_name + "쉙")) {
                             System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[3] + "은(는) 존재하지 않는 변수입니다.");
                             break;
                         }
 
-                        if(!Arrays.toString(int_name).contains(var_name_2)) {
+                        if(!Arrays.toString(int_name).contains("쉙" + var_name_2 + "쉙")) {
                             System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[5] + "은(는) 존재하지 않는 변수입니다.");
                             break;
                         }
@@ -222,12 +219,12 @@ public class Main {
                         String var_name = code_index[3];
                         String var_name_2 = code_index[5];
 
-                        if(!Arrays.toString(int_name).contains(var_name)) {
+                        if(!Arrays.toString(int_name).contains("쉙" + var_name + "쉙")) {
                             System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[3] + "은(는) 존재하지 않는 변수입니다.");
                             break;
                         }
 
-                        if(!Arrays.toString(int_name).contains(var_name_2)) {
+                        if(!Arrays.toString(int_name).contains("쉙" + var_name_2 + "쉙")) {
                             System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[5] + "은(는) 존재하지 않는 변수입니다.");
                             break;
                         }
@@ -245,8 +242,14 @@ public class Main {
                                                 q = Integer.parseInt(code_index[8]);
                                                 q -= 2;
                                             } catch (NumberFormatException e) {
-                                                System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
-                                                break;
+                                                String var_name_3 = code_index[8];
+                                                if(Arrays.toString(int_name).contains("쉙" + var_name_3 + "쉙")) {
+                                                    q = get_int(var_name_3, code_line, code_index, 8);
+                                                    q -= 2;
+                                                } else {
+                                                    System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
+                                                    break;
+                                                }
                                             }
 
                                         } else {
@@ -271,8 +274,14 @@ public class Main {
                                                 q = Integer.parseInt(code_index[8]);
                                                 q -= 2;
                                             } catch (NumberFormatException e) {
-                                                System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
-                                                break;
+                                                String var_name_3 = code_index[8];
+                                                if(Arrays.toString(int_name).contains("쉙" + var_name_3 + "쉙")) {
+                                                    q = get_int(var_name_3, code_line, code_index, 8);
+                                                    q -= 2;
+                                                } else {
+                                                    System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
+                                                    break;
+                                                }
                                             }
 
                                         } else {
@@ -297,8 +306,14 @@ public class Main {
                                                 q = Integer.parseInt(code_index[8]);
                                                 q -= 2;
                                             } catch (NumberFormatException e) {
-                                                System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
-                                                break;
+                                                String var_name_3 = code_index[8];
+                                                if(Arrays.toString(int_name).contains("쉙" + var_name_3 + "쉙")) {
+                                                    q = get_int(var_name_3, code_line, code_index, 8);
+                                                    q -= 2;
+                                                } else {
+                                                    System.out.println(line_count + "번째 줄의 " + code_index[8] + "은(는) 잘못된 정수입니다.");
+                                                    break;
+                                                }
                                             }
 
                                         } else {
@@ -323,7 +338,100 @@ public class Main {
                         System.out.println(line_count + "번째 줄의 " + code_index[2] + "은(는) 잘못된 구문입니다.");
                         break;
                     }
-                } else {
+                } else if(code_index[1].equals("store")) {
+                    if(code_index[2].equals("result")) {
+                        if(code_index[3].equals("score")) {
+                            if(code_index[5].equals("run")) {
+                                if(code_index[6].equals("scoreboard")) {
+                                    if(code_index[7].equals("players")) {
+                                        if(code_index[8].equals("get")) {
+                                            String var_name = code_index[4];
+                                            String var_name_2 = code_index[9];
+
+                                            if(Arrays.toString(int_name).contains("쉙" + var_name + "쉙")) {
+
+                                                if (Arrays.toString(string_name).contains("쉚" + var_name_2 + "쉚")) {
+
+                                                    int len = get_string(var_name_2, code_line, code_index, 9).length();
+                                                    set_int(var_name, code_line, code_index, 4, len);
+
+                                                } else if (Arrays.toString(int_name).contains("쉙" + var_name_2 + "쉙")) {
+
+                                                    int len = get_int(var_name_2, code_line, code_index, 9);
+                                                    int lens = Integer.toString(len).length();
+                                                    set_int(var_name, code_line, code_index, 4, lens);
+
+                                                } else {
+                                                    System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[9] + "은(는) 존재하지 않는 변수입니다.");
+                                                    break;
+                                                }
+                                            } else {
+                                                System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[4] + "은(는) 존재하지 않는 변수이거나, 문자열입니다.");
+                                                break;
+                                            }
+                                        } else {
+                                            System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[8] + " <-- [여기]");
+                                            break;
+                                        }
+                                    } else {
+                                        System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[7] + " <-- [여기]");
+                                        break;
+                                    }
+                                } else if(code_index[6].equals("random")) {
+                                    if(code_index[7].equals("value")) {
+
+                                        if(code_index[8].contains("..")) {
+
+                                            String[] range = code_index[8].split("\\.\\.");
+                                            String var_name = code_index[4];
+                                            try {
+                                                int t1 = Integer.parseInt(range[0]);
+                                                int t2 = Integer.parseInt(range[1]);
+                                                int random = getRandomNumberBetween(t1, t2);
+                                                set_int(var_name, code_line, code_index, 4, random);
+
+                                            } catch (NumberFormatException e) {
+                                                if((Arrays.toString(int_name).contains("쉙" + range[0] + "쉙")) && (Arrays.toString(int_name).contains("쉙" + range[1] + "쉙"))) {
+                                                    int t1 = get_int(range[0], code_line, code_index, 8);
+                                                    int t2 = get_int(range[1], code_line, code_index, 8);
+                                                    int random = getRandomNumberBetween(t1, t2);
+                                                    set_int(var_name, code_line, code_index, 4, random);
+                                                } else {
+                                                    System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + range[0] + " 또는 " + range[1] + "은(는) 존재하지 않는 변수입니다.");
+                                                    break;
+                                                }
+                                            }
+
+                                        } else {
+                                            System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[8] + "<-- [여기]");
+                                        }
+
+                                    } else {
+                                        System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[6] + " <-- [여기]");
+                                    }
+
+                                } else {
+                                    System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[6] + " <-- [여기]");
+                                    break;
+                                }
+                            }
+
+                            else {
+                                System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[5] + " <-- [여기]");
+                                break;
+                            }
+                        } else {
+                            System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[3] + " <-- [여기]");
+                            break;
+                        }
+                    } else {
+                        System.out.println(line_count + "번째 줄의 " + code_line + "에서, " + code_index[2] + " <-- [여기]");
+                        break;
+                    }
+                }
+
+
+                else {
                     System.out.println(line_count + "번째 줄의 " + code_index[1] + "은(는) 잘못된 구문입니다.");
                     break;
                 }
@@ -333,8 +441,14 @@ public class Main {
                         q = Integer.parseInt(code_index[1]);
                         q -= 2;
                     } catch (NumberFormatException e) {
-                        System.out.println(line_count + "번째 줄의 " + code_index[1] + "은(는) 잘못된 정수입니다.");
-                        break;
+                        String var_name = code_index[1];
+                        if(Arrays.toString(int_name).contains("쉙" + var_name + "쉙")) {
+                            q = get_int(var_name, code_line, code_index, 1);
+                            q -= 2;
+                        } else {
+                            System.out.println(line_count + "번째 줄의 " + code_index[1] + "은(는) 잘못된 정수입니다.");
+                            break;
+                        }
                     }
                 } else {
                     System.out.println(line_count + "번째 줄의 " + code_index[2] + "은(는) 존재하지 않는 블럭입니다.");
@@ -345,7 +459,16 @@ public class Main {
 
             else if(code_index[0].equals("summon")) {
                 if(code_index[1].equals("tnt")) break;
+                else if(code_index[1].equals("creeper")) while(true) continue;
                 else System.out.println(line_count + "번째 줄의 " + code_index[1] + "은(는) 존재하지 않는 엔티티입니다.");
+            }
+
+            else if(code_index[0].equals("h")) {
+                if(code_line.equals("h")) System.out.println("Hello, world!");
+                else {
+                    System.out.println(line_count + "번째 줄의 " + code_line.substring(1) + " <-- [여기]");
+                    break;
+                }
             }
 
             else if(code_index[0].equals("say")) {
@@ -463,6 +586,21 @@ public class Main {
                 }
             }
         }
+    }
+
+    public static int getRandomNumberBetween(int min, int max) {
+        // If min is greater than max, swap them
+        if (min > max) {
+            int temp = min;
+            min = max;
+            max = temp;
+        }
+
+        // Create an instance of Random
+        Random random = new Random();
+
+        // Generate a random number within the specified range
+        return random.nextInt((max - min) + 1) + min;
     }
 
 
