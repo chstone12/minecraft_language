@@ -477,6 +477,8 @@ public class Main {
 
             else if(code_index[0].startsWith("tellraw")) {
                 String output = code_line.substring(8).replace("  ", " ");
+                while(output.contains("  ")) output = output.replace("  ", " ");
+                while(output.contains(" + ")) output = output.replace(" + ", "+");
                 String[] ar = output.split("\\+");
                 for(int w = 0; w < ar.length; w++) {
 
